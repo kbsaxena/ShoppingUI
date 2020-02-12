@@ -1,41 +1,42 @@
-<form class="login-form">
+<form class="login-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
     <h1 class="row justify-content-center">Register</h1>
     <div class="row">
         <div class="col">
             <div class="form-group font-weight-bold">
                 <label for="fullname">Full Name</label>
-                <input type="text" class="form-control" id="fullname" placeholder="Enter full name">
+                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Enter full name" [(ngModel)]="user.fullname" required />
             </div>
             <div class="form-group font-weight-bold">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter username">
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group font-weight-bold">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
-            </div>
-            <div class="form-group font-weight-bold">
-                <label for="retype-password">Re-type Password</label>
-                <input type="password" class="form-control" id="email" placeholder="Re-type password">
-            </div>
-            <div class="form-group font-weight-bold">
-                
-                <div class="row">
-                    
-                </div>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="user.email" required />
             </div>
             <div class="form-group font-weight-bold">
                 <label for="mobile">Mobile</label>
                 <div class="input-group">
-                    <input type="text" class="form-control col-3" id="countrycode" placeholder="cc">
-                    <input type="text" class="form-control" id="mobile-number" placeholder="Enter mobile number">
+                    <input name="countrycode" type="text" class="form-control col-3" id="countrycode" placeholder="cc" [(ngModel)]="user.countryCode" required />
+                    <input name="mobile-number" type="text" class="form-control" id="mobile-number" placeholder="Enter mobile number" [(ngModel)]="user.mobileNumber" required />
                 </div>
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="dob">DOB</label>
+                <input name="dob" type="date" class="form-control" id="dob" [(ngModel)]="user.dob" required />
+            </div>
+        </div>
+        <div class="col">            
+            <div class="form-group font-weight-bold">
+                <label for="username">Username</label>
+                <input name="username" type="text" class="form-control" id="username" placeholder="Enter username" [(ngModel)]="user.username" required />
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="password">Password</label>
+                <input name="password" type="password" class="form-control" id="password" placeholder="Enter password" [(ngModel)]="user.password" required />
+            </div>
+            <div class="form-group font-weight-bold">
+                <label for="retype-password">Re-type Password</label>
+                <input name="retype-password" type="password" class="form-control" id="retype-password" placeholder="Re-type password" [(ngModel)]="retypePassword" required />
+                <span class="help-block text-danger" [hidden]="(user.password === retypePassword) || user.password === '' || retypePassword === ''">
+                    Passwords don't match
+                </span>
             </div>
         </div>
     </div>
