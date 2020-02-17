@@ -1,48 +1,75 @@
-<form class="login-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
+<form class="login-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <h1 class="row justify-content-center">Register</h1>
     <div class="row">
         <div class="col">
             <div class="form-group font-weight-bold">
                 <label for="fullname">Full Name</label>
-                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Enter full name" [(ngModel)]="user.fullname" required />
+                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Enter full name" [(ngModel)]="user.fullname" required #name="ngModel" [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched)}"/>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <span class="alert-danger" *ngIf="name.errors.required">Full name is required!</span>
+                </div>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="email">Email</label>
-                <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="user.email" required />
+                <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="user.email" required #email="ngModel" [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched)}" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <span class="alert-danger" *ngIf="email.errors.required">Email is required!</span>
+                    <span class="alert-danger" *ngIf="email.errors.pattern">Invalid Email format!</span>
+                </div>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="mobile">Mobile</label>
                 <div class="input-group">
-                    <input name="countrycode" type="text" class="form-control col-3" id="countrycode" placeholder="cc" [(ngModel)]="user.countryCode" required />
-                    <input name="mobile-number" type="text" class="form-control" id="mobile-number" placeholder="Enter mobile number" [(ngModel)]="user.mobileNumber" required />
+                    <input name="countrycode" type="text" class="form-control col-3" id="countrycode" placeholder="cc" [(ngModel)]="user.countryCode" required minlength="2" #ccode="ngModel" [ngClass]="{ 'is-invalid': ccode.invalid && (ccode.dirty || ccode.touched)}"/>
+                    <input name="mobile-number" type="text" class="form-control" id="mobile-number" placeholder="Enter mobile number" [(ngModel)]="user.mobileNumber" required minlength="8" #mobile="ngModel" [ngClass]="{ 'is-invalid': mobile.invalid && (mobile.dirty || mobile.touched)}" pattern="[0-9]+"/>
+                </div>
+                <div *ngIf="ccode.invalid && (ccode.dirty || ccode.touched)">
+                    <span class="alert-danger" *ngIf="ccode.errors.required">Country Code is required!</span>
+                    <span class="alert-danger" *ngIf="ccode.errors.minlength">Country Code should be more than 2 characters!</span>
+                </div>
+                <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                    <span class="alert-danger" *ngIf="mobile.errors.required">Mobile number is required!</span>
+                    <span class="alert-danger" *ngIf="mobile.errors.minlength">Mobile number minimum length is 8!</span>
+                    <span class="alert-danger" *ngIf="mobile.errors.pattern && !mobile.errors.minlength">Invalid mobile number!</span>
                 </div>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="dob">DOB</label>
-                <input name="dob" type="date" class="form-control" id="dob" [(ngModel)]="user.dob" required  placeholder="dd-mm-yyyy"/>
+                <input name="dob" type="date" class="form-control" id="dob" [(ngModel)]="user.dob" required #dob="ngModel" [ngClass]="{ 'is-invalid': dob.invalid && (dob.dirty || dob.touched)}"/>
+                <div *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+                    <span class="alert-danger" *ngIf="dob.errors.required">Date of birth is required!</span>
+                </div>
             </div>
         </div>
         <div class="col">            
             <div class="form-group font-weight-bold">
                 <label for="username">Username</label>
-                <input name="username" type="text" class="form-control" id="username" placeholder="Enter username" [(ngModel)]="user.username" required />
+                <input name="username" type="text" class="form-control" id="username" placeholder="Enter username" [(ngModel)]="user.username" required minlength="6" #username="ngModel" [ngClass]="{ 'is-invalid': username.invalid && (username.dirty || username.touched)}"/>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <span class="alert-danger" *ngIf="username.errors.required">Username is required!</span>
+                    <span class="alert-danger" *ngIf="username.errors.minlength">Username should be more than 6 characters!</span>
+                </div>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="password">Password</label>
-                <input name="password" type="password" class="form-control" id="password" placeholder="Enter password" [(ngModel)]="user.password" required />
+                <input name="password" type="password" class="form-control" id="password" placeholder="Enter password" [(ngModel)]="user.password" required minlength="8" #password="ngModel" [ngClass]="{ 'is-invalid': password.invalid && (password.dirty || password.touched)}"/>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <span class="alert-danger" *ngIf="password.errors.required">Password is required!</span>
+                    <span class="alert-danger" *ngIf="password.errors.minlength">Password should be more than 8 characters!</span>
+                </div>
             </div>
             <div class="form-group font-weight-bold">
                 <label for="retype-password">Re-type Password</label>
-                <input name="retype-password" type="password" class="form-control" id="retype-password" placeholder="Re-type password" [(ngModel)]="retypePassword" required />
-                <span class="help-block text-danger" [hidden]="(user.password === retypePassword) || user.password === '' || retypePassword === ''">
-                    Passwords don't match
-                </span>
+                <input name="retype-password" type="password" class="form-control" id="retype-password" placeholder="Re-type password" [(ngModel)]="retypePassword" required minlength="8" #retypepassword="ngModel" [ngClass]="{ 'is-invalid': (retypepassword.dirty || retypepassword.touched) && user.password !== retypePassword }"/>
+                <div *ngIf="retypepassword.dirty || retypepassword.touched">
+                    <span class="alert-danger" *ngIf="user.password !== retypePassword">Passwords don't match!</span>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col text-center submit">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid || user.password !== retypePassword">Submit</button>
         </div>
     </div>
     <span>Already a member! -> </span><a href="/login" class="font-weight-bold">Login here</a>
