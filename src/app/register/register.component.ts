@@ -21,7 +21,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-      this.userService.save(this.user);
+    this.userService.save(this.user).subscribe(data => {
+       alert("Registered Sucessfully!");
+       this.router.navigate(['/login']);
+    }, error => console.log(error));
   }
 
   ngOnInit(): void {
