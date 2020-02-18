@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.userService.save(this.user).subscribe(data => {
        alert("Registered Sucessfully!");
-       this.router.navigate(['/login']);
+       this.router.navigate(['/validate-registration']);
     }, error => console.log(error));
   }
 
