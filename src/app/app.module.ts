@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ValidateRegistrationComponent } from './validate-registration/validate-registration.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    ValidateRegistrationComponent,
   ],
   imports: [
     BrowserModule,
