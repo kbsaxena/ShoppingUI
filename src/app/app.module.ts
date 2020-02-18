@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ValidateRegistrationComponent } from './validate-registration/validate-registration.component';
+import { CrosscomponentService } from './services/user/crosscomponent.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ValidateRegistrationComponent } from './validate-registration/validate-
     FormsModule,
     HttpClientModule
   ],
-  providers: [ UserService],
+  providers: [UserService,CrosscomponentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
