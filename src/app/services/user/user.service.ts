@@ -7,16 +7,18 @@ import { User } from '../../model/user/user';
 })
 export class UserService {
  
-  private usersUrl: string;
+  private registerUrl: string;
   private loginUrl: string;
+  email: string;
  
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/register';
+    this.registerUrl = 'http://localhost:8080/register';
     this.loginUrl = 'http://localhost:8080/login';
   }
  
   public save(user: User) {
-    return this.http.post(this.usersUrl, user);
+    this.email = user.email;
+    return this.http.post(this.registerUrl, user);
   }
 
   public login(user: User) {

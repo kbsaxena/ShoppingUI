@@ -1,5 +1,6 @@
 <form class="login-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <h1 class="row justify-content-center">Register</h1>
+    <span class="alert-danger row justify-content-center" *ngIf="isRegistered">User already registered!</span>
     <div class="row">
         <div class="col">
             <div class="form-group font-weight-bold">

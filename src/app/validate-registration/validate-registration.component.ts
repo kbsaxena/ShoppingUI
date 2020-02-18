@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-validate-registration',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidateRegistrationComponent implements OnInit {
 
-  constructor() { }
+  email: String;
+
+  constructor(private service:UserService) {
+  }
 
   ngOnInit(): void {
+    this.email = this.service.email;
   }
 
 }

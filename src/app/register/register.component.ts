@@ -11,6 +11,7 @@ import { User } from '../model/user/user';
 export class RegisterComponent implements OnInit {
   user: User;
   retypePassword: string;
+  isRegistered: boolean;
 
   constructor(
     private route: ActivatedRoute, 
@@ -18,13 +19,13 @@ export class RegisterComponent implements OnInit {
         private userService: UserService) {
     this.user = new User();
     this.retypePassword = '';
+    this.isRegistered = false;
   }
 
   onSubmit() {
     this.userService.save(this.user).subscribe(data => {
-       alert("Registered Sucessfully!");
        this.router.navigate(['/validate-registration']);
-    }, error => console.log(error));
+    }, error => { this.isRegistered = true; });
   }
 
   ngOnInit(): void {
