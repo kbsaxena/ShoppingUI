@@ -11,6 +11,7 @@ import { UserService } from './services/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ValidateRegistrationComponent } from './validate-registration/validate-registration.component';
 import { CrosscomponentService } from './services/user/crosscomponent.service';
+import { ValidateUserComponent } from './validate-user/validate-user.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CrosscomponentService } from './services/user/crosscomponent.service';
     LoginComponent,
     RegisterComponent,
     ValidateRegistrationComponent,
+    ValidateUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,4 +25,8 @@ export class UserService {
     const body = {username: user.username, password: user.password};
     return this.http.post(this.loginUrl, body);
   }
+
+  public validateUser(id: number) {
+    
+  }
 }

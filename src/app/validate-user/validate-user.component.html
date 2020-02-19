@@ -1,0 +1,14 @@
+<div class="card validation-card" *ngIf="isValidated">
+    <h5 class="card-header bg-success">Validation Successful</h5>
+    <div class="card-body">
+      <p class="card-text">You have now successfully verified your email. Please click on below button to login.</p>
+      <a routerLink="/login" routerLinkActive="router-link-active"  class="btn btn-primary">Login</a>
+    </div>
+</div>
+
+<div class="card validation-card" *ngIf="!isValidated">
+    <h5 class="card-header bg-danger">Validation Unsuccessful</h5>
+    <div class="card-body">
+      <p class="card-text">Please click on the link provided to you through the mail.</p>
+    </div>
+</div>
