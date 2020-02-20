@@ -5,12 +5,7 @@
       <a routerLink="/login" routerLinkActive="router-link-active"  class="btn btn-primary" style="margin-bottom: 10px;">Login</a>
       <p class="card-text">If you were unable to receive confirmation mail, please click the below button to resend the confirmation mail.</p>
       <button (click)="resendConfirmation()" class="btn btn-secondary">Resend Confirmation</button>
-      <div class="spinner-border text-success validation-spinner" role="status" *ngIf="!isClicked">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div *ngIf="isClicked">
-        <p class="card-text alert-danger" *ngIf="isClicked && !isResendSuccessful">Unable to fetch your details / Error in processing your request</p>
-        <p class="card-text bg-success" *ngIf="isClicked && isResendSuccessful">Successfully sent the validation link to your mail.</p>
-      </div>
+      <p class="card-text alert-danger" *ngIf="isClicked && !isResendSuccessful">Unable to fetch your details / Error in processing your request</p>
+      <p class="card-text bg-success" *ngIf="isClicked && isResendSuccessful">Successfully sent the validation link to your mail.</p>
     </div>
 </div>

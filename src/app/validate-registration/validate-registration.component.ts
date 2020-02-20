@@ -25,7 +25,9 @@ export class ValidateRegistrationComponent implements OnInit {
   resendConfirmation() {
     this.service.resendConfirmation(this.email).subscribe(data => {
       this.isResendSuccessful = true;
+      this.isClicked = true;
+    }, error => {
+      this.isClicked = true;
     });
-    this.isClicked = true;
   }
 }
