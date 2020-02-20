@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-validate-registration',
@@ -8,13 +9,23 @@ import { UserService } from '../services/user/user.service';
 })
 export class ValidateRegistrationComponent implements OnInit {
 
-  email: String;
+  email: string;
+  isClicked: boolean;
+  isResendSuccessful: boolean;
 
-  constructor(private service:UserService) {
+  constructor(private route: ActivatedRoute, 
+    private router: Router, private service:UserService) {
+    this.isClicked = false;
   }
 
   ngOnInit(): void {
     this.email = this.service.email;
   }
 
+  resendConfirmation() {
+    this.service.resendConfirmation(this.email).subscribe(data => {
+      this.isResendSuccessful = true;
+    });
+    this.isClicked = true;
+  }
 }

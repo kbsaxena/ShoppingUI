@@ -2,6 +2,15 @@
     <h5 class="card-header bg-success">Registration Successful</h5>
     <div class="card-body">
       <p class="card-text">You have now successfully registered. Please verify your email address by clicking the link provided link in the verification mail sent to your email address: <span class="font-weight-bold">{{email}}</span>. Once verified please click on below button to login.</p>
-      <a routerLink="/login" routerLinkActive="router-link-active"  class="btn btn-primary">Login</a>
+      <a routerLink="/login" routerLinkActive="router-link-active"  class="btn btn-primary" style="margin-bottom: 10px;">Login</a>
+      <p class="card-text">If you were unable to receive confirmation mail, please click the below button to resend the confirmation mail.</p>
+      <button (click)="resendConfirmation()" class="btn btn-secondary">Resend Confirmation</button>
+      <div class="spinner-border text-success validation-spinner" role="status" *ngIf="!isClicked">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div *ngIf="isClicked">
+        <p class="card-text alert-danger" *ngIf="isClicked && !isResendSuccessful">Unable to fetch your details / Error in processing your request</p>
+        <p class="card-text bg-success" *ngIf="isClicked && isResendSuccessful">Successfully sent the validation link to your mail.</p>
+      </div>
     </div>
-  </div>
+</div>

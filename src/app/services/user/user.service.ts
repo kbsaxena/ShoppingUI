@@ -9,11 +9,15 @@ export class UserService {
  
   private registerUrl: string;
   private loginUrl: string;
+  private validationURL: string;
+  private resendConfirmationURL: string;
   email: string;
  
   constructor(private http: HttpClient) {
     this.registerUrl = 'http://localhost:8080/register';
     this.loginUrl = 'http://localhost:8080/login';
+    this.validationURL = 'http://localhost:8080/validate-user';
+    this.resendConfirmationURL = 'http://localhost:8080/resend-validation-link';
   }
  
   public save(user: User) {
@@ -27,6 +31,10 @@ export class UserService {
   }
 
   public validateUser(id: number) {
-    
+    return this.http.post(this.validationURL, id);
+  }
+
+  public resendConfirmation(email: string) {
+    return this.http.post(this.resendConfirmationURL, email);
   }
 }

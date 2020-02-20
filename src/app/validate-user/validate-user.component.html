@@ -1,4 +1,4 @@
-<div class="card validation-card" *ngIf="isValidated">
+<div class="card validation-card" *ngIf="isValidated && isProcessed">
     <h5 class="card-header bg-success">Validation Successful</h5>
     <div class="card-body">
       <p class="card-text">You have now successfully verified your email. Please click on below button to login.</p>
@@ -6,9 +6,13 @@
     </div>
 </div>
 
-<div class="card validation-card" *ngIf="!isValidated">
+<div class="card validation-card" *ngIf="!isValidated && isProcessed">
     <h5 class="card-header bg-danger">Validation Unsuccessful</h5>
     <div class="card-body">
       <p class="card-text">Please click on the link provided to you through the mail.</p>
     </div>
+</div>
+
+<div class="spinner-border text-success validation-spinner" role="status" *ngIf="!isProcessed">
+    <span class="sr-only">Loading...</span>
 </div>
