@@ -1,0 +1,175 @@
+<div class="container emp-profile">
+    <form method="post" #loginForm="ngForm">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                            <h5>
+                                {{user.fullname}}
+                            </h5>
+                            <h6>
+                                
+                            </h6>
+                            <p class="proile-rating">Account Status : <span>{{user.status}}</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="" role="tab" aria-controls="profile" aria-selected="false">Billing Details</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn text-dark font-weight-bold" name="btnAddMore" value="Edit Profile" (click)="onEdit()"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.username && !editMode">
+                                        <p>{{user.username}}</p>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="editMode">
+                                        <input class="form-control" [(ngModel)]="user.username" name="username"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.fullname && !editMode">
+                                        <p>{{user.fullname}}</p>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="editMode">
+                                        <input class="form-control" [(ngModel)]="user.fullname" name="fullname"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>Date of Birth</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.dob && !editMode">
+                                        <p>{{user.dob | date:'longDate'}}</p>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="editMode">
+                                        <input name="dob" class="form-control" type="date" [(ngModel)]="user.dob"/>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.email && !editMode">
+                                        <p>{{user.email}}</p>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="editMode">
+                                        <input name="email" class="form-control" [(ngModel)]="user.email"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.countryCode && user.mobileNumber  && !editMode">
+                                        <p>{{user.countryCode}} - {{user.mobileNumber}}</p>
+                                    </div>
+                                    <div class="col-md-6 input-group" *ngIf="editMode">
+                                        <input name="countryCode" class="form-control col-3" [(ngModel)]="user.countryCode"/>
+                                        <input name="mobileNumber" class="form-control" [(ngModel)]="user.mobileNumber"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group font-weight-bold">
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="user.address  && !editMode">
+                                        <p>{{user.address}}</p>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="editMode">
+                                        <input name="houseNumber" class="form-control" [(ngModel)]="user.houseNumber"/>
+                                        <input name="area" class="form-control" [(ngModel)]="user.area"/>
+                                        <input name="landmark" class="form-control" [(ngModel)]="user.landmark"/>
+                                        <input name="city" class="form-control" [(ngModel)]="user.city"/>
+                                        <input name="state" class="form-control" [(ngModel)]="user.state"/>
+                                        <input name="pincode" class="form-control" [(ngModel)]="user.pincode"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group font-weight-bold" *ngIf="editMode">
+                                    <div class="col-md-6">
+                                        <input type="submit" class="profile-edit-btn text-dark font-weight-bold btn-primary" name="btnAddMore" value="Save Details" (click)="saveDetails()"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" class="profile-edit-btn text-dark font-weight-bold btn-danger" name="btnAddMore" value="Clear" (click)="clear()"/>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Your Bio</label><br/>
+                                <p>Your detail description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>

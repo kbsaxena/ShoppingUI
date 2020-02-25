@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   user: User;
   
   constructor(private userService: UserService, private router: Router,private crossservice:CrosscomponentService) {
-    
     this.user = new User();
   }
 
@@ -21,18 +20,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    
     console.log("inside On Submit");
     console.log(this.user);
     this.userService.login(this.user).subscribe(data => {
       if(Boolean(data)){
-        alert("Successfully Logged In");
-        this.crossservice.setName(this.user.fullname)
+        //alert("Successfully Logged In");
+        console.log(data)
+        this.crossservice.setName(data["username"]);
+        this.crossservice.setUserData(data);
         this.router.navigate(['/home']);
       }
    }, error => console.log(error));
-
-
   }
 
 }

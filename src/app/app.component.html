@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Shopping</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +14,20 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 position-relative">
-      <label class="text-white bg-dark mr-sm-2">{{getName()}}</label>
+      <label class="text-white bg-dark mr-sm-2" *ngIf="getName()">Hello</label>
+      <div class="dropdown" *ngIf="getName()">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{getName()}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" routerLink="home/profile">My Profile</a>
+          <a class="dropdown-item" routerLink="home/orders">My Orders</a>
+          <a class="dropdown-item" routerLink="home/wishlist">My Wishlist</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="home/aboutus">About Us</a>
+          <a class="dropdown-item" routerLink="home/logout">Logout</a>
+        </div>
+      </div>
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>

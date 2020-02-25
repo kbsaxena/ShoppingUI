@@ -6,4 +6,12 @@ export class User {
 	  countryCode: string;
 	  mobileNumber: string;
 	  dob: Date;
+	  status:string;
+	  houseNumber:string;
+	  area:string;
+	  landmark:string;
+	  city:string;
+	  state:string;
+	  pincode:string;
+	  address:string;
 }

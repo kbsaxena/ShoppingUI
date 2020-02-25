@@ -16,6 +16,6 @@ export class AppComponent {
   
   title = 'ShoppingUI';
   getName(){
-    this.crossservice.name;
+    return this.crossservice.name;
   }
 }
